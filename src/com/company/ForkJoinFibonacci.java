@@ -5,7 +5,7 @@ import java.util.concurrent.RecursiveAction;
 
 public class ForkJoinFibonacci extends RecursiveAction {
     private volatile long number;
-    private static final long superNumber = 50;
+    private static final long threads = 25;
 
     public ForkJoinFibonacci(long number) {
         this.number = number;
@@ -18,7 +18,7 @@ public class ForkJoinFibonacci extends RecursiveAction {
     @Override
     protected void compute() {
         long n = number;
-        if (n <= superNumber) {
+        if (n <= threads) {
             number = findFibonacciNumber(n);
         } else {
             ForkJoinFibonacci fibonacci1 = new ForkJoinFibonacci(n - 1);
